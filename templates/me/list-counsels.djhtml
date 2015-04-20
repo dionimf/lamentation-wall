@@ -1,0 +1,7 @@
+{% if counsels %}
+    <ul>
+        {% for counsel in counsels %}
+            <li>{{ counsel.text }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
