@@ -5,7 +5,7 @@ from django.db import models, migrations
 import django.core.validators
 import django.utils.timezone
 
- migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+migrations.swappable_dependency(settings.AUTH_USER_MODEL),
 
 class Migration(migrations.Migration):
 
