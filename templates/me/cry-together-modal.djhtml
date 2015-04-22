@@ -1,5 +1,4 @@
 <div class="modal fade" id="counsel-modal">
-
     <form data-parsley-validate id="counsel-form" method="post">
         {% csrf_token %}
 
