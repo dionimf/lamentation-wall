@@ -1,7 +1,6 @@
 #logo img {
     height: 30px;
     width: auto;
-    padding: 0px;
     margin: 0px;
 }
 
@@ -21,14 +20,6 @@
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
-}
-
-.container > .navbar-header,
-.container-fluid > .navbar-header,
-.container > .navbar-collapse,
-.container-fluid > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: 0px;
 }
 
 body {

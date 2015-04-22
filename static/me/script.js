@@ -82,10 +82,13 @@ $(document).ready(function() {
 
         return false;
     });
+
+    window.dispatchEvent(new Event('resize'));
 });
 
 if($.browser.mobile && $.browser.mozilla) {
     $('#lamentations').css('height', 'auto');
     $('#lament-header').removeClass('navbar-fixed-top');
-    $('body').removeClass('body');
+    //$('body').removeClass('body');
 }
+$(document).height(10);
