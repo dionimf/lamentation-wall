@@ -21,7 +21,7 @@
 
     <body class="body">
         {% include "me/cry-together-modal.djhtml" %}
-        <nav class="navbar navbar-style navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-static-top">
             <div class="container" >
                 <div class="navbar-header" ><a href="/" id="logo" class="navbar-brand" >
                     <img src="{% static "img/muro-lamentacao-logo.png" %}" />
