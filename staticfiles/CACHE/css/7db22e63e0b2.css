@@ -177,7 +177,6 @@ a {
 
 #loading-indicator img {
     top: 50%;
-    left: calc(50% - (110px));
     margin-right: auto;
     margin-left: auto;
     position: fixed;

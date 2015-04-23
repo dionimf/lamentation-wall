@@ -171,15 +171,12 @@ a {
     top: 0px;
     bottom: 0px;
     z-index: 9000;
-    width: 100%;
 
 }
 
 #loading-indicator img {
     top: 50%;
-    left: calc(50% - (110px));
     margin-right: auto;
     margin-left: auto;
-    position: fixed;
     opacity: 1;
 }
