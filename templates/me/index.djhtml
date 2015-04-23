@@ -103,7 +103,7 @@
                     {% if lamentations %}
                         {% for lament in lamentations %}
                             <div class="lament" id="lament-{{ lament.id }}">
-                                <div>{{ lament.text }}</div>
+                                <div>{{ lament.text|linebreaks }}</div>
 
                                 <div class="lamentation-date" style="position: relative;">
                                     &nbsp;
