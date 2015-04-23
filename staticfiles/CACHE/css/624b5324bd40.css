@@ -32,7 +32,6 @@
 
 body {
   padding-top: 60px;
-  height: 100%;
 }
 
 @media (max-width: 767px) {
@@ -163,31 +162,13 @@ a {
 }
 
 #loading-indicator {
-    position: fixed;
-    background: black;
-    opacity: 0.5;
+    display: none;
     margin-left: auto;
     margin-right: auto;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    z-index: 9000;
-
-}
-
-#loading-indicator img {
+    left: 0;
+    right: 0;
     top: 50%;
-    position: fixed;
-    opacity: 1;
-}
-
-.fixed {
-    position: fixed;
-    top: 0px;
-    margin-left: auto;
-    left: 0px;
-    
-    margin-right: auto;
-    text-align: center;
+    background: red;
+    height: 100%;
+    zindex: 999999;
 }

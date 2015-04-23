@@ -163,31 +163,14 @@ a {
 }
 
 #loading-indicator {
-    position: fixed;
-    background: black;
-    opacity: 0.5;
+    display: inline;
+    position: absolute;
+    background: red;
     margin-left: auto;
     margin-right: auto;
     left: 0px;
     right: 0px;
-    top: 0px;
+    top: 50px;
     bottom: 0px;
-    z-index: 9000;
-
-}
-
-#loading-indicator img {
-    top: 50%;
-    position: fixed;
-    opacity: 1;
-}
-
-.fixed {
-    position: fixed;
-    top: 0px;
-    margin-left: auto;
-    left: 0px;
-    
-    margin-right: auto;
-    text-align: center;
+    z-index: 2000;
 }

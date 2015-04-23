@@ -174,20 +174,13 @@ a {
     bottom: 0px;
     z-index: 9000;
 
+    transition: opacity .25s easy-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
 }
 
 #loading-indicator img {
     top: 50%;
     position: fixed;
     opacity: 1;
-}
-
-.fixed {
-    position: fixed;
-    top: 0px;
-    margin-left: auto;
-    left: 0px;
-    
-    margin-right: auto;
-    text-align: center;
 }

@@ -19,11 +19,12 @@
 
     <body class="body">
         {% include "me/cry-together-modal.djhtml" %}
-        <nav class="navbar navbar-default navbar-fixed-top navbar-static-top">
-            <div class="container" >
-                <div class="navbar-header" ><a href="/" id="logo" class="navbar-brand" >
-                    <img src="{% static "img/muro-lamentacao-logo.png" %}" />
-                </a>
+        <nav id="navheader" class="navbar navbar-default navbar-fixed-top navbar-static-top">
+            <div class="container">
+                <div class="navbar-header" >
+                    <a href="/" id="logo" class="navbar-brand" >
+                        <img src="{% static "img/muro-lamentacao-logo.png" %}" />
+                    </a>
                 <button type="button" data-target="#navbar" data-toggle="collapse" class="navbar-toggle" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
 
@@ -75,7 +76,9 @@
         </nav>
         
         <div class="fill container">
-            <img src="{% static "img/ajax-loader.gif" %}" id="loading-indicator" style="display: none;" />
+            <div id="loading-indicator" style="display: none;" >
+                <img src="{% static "img/ajax-loader.png" %}" />
+            </div>
 
             <form class="form lament-form" action="" method="post" id="lament-form" data-parsley-validate>
                 

@@ -6,6 +6,8 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
 from django.contrib.auth.models import AbstractUser, User
+from datetime import timedelta
+from django.utils import timezone
 
 
 class LamentModel(models.Model):
@@ -32,3 +34,24 @@ class VisitModel(models.Model):
 
 class UserModel(AbstractUser):
     pass
+
+class PostRateModel(models.Model):
+    ip = models.GenericIPAddressField()
+    date = models.DateTimeField()
+    type = models.CharField(max_length=15)
+
+    max_per_minute = 1
+
+    def is_too_much(ip, type):
+        time_threshold = timezone.now() - timedelta(minutes=1)
+
+        print(':::' );
+        print(time_threshold)
+
+        if (PostRateModel.objects.
+            filter(date__gt=time_threshold, type=type, ip=ip).count() >=
+            PostRateModel.max_per_minute):
+
+            return True
+
+        return False

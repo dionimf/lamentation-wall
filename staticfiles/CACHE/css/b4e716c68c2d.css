@@ -162,32 +162,18 @@ a {
     bottom: 0px;
 }
 
+.loading-indicator-body {
+    background: red;
+    z-index: 9999999999;
+}
+
 #loading-indicator {
-    position: fixed;
-    background: black;
-    opacity: 0.5;
+    display: none;
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    z-index: 9000;
-
-}
-
-#loading-indicator img {
-    top: 50%;
-    position: fixed;
-    opacity: 1;
-}
-
-.fixed {
-    position: fixed;
-    top: 0px;
-    margin-left: auto;
-    left: 0px;
-    
-    margin-right: auto;
-    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
 }

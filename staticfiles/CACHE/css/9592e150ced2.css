@@ -184,10 +184,4 @@ a {
 
 .fixed {
     position: fixed;
-    top: 0px;
-    margin-left: auto;
-    left: 0px;
-    
-    margin-right: auto;
-    text-align: center;
 }

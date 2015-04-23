@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth import login, logout as auth_logout
 
-from index_board.forms import LamentationForm, CounselForm, VisitModel
+from index_board.forms import LamentationForm, CounselForm, VisitModel, PostRateModel
 from index_board.models import *
 
 from django.shortcuts import render_to_response
@@ -11,7 +11,7 @@ from django.template.context import RequestContext
 
 import json
 from mylib.general import get_client_ip
-from datetime import datetime
+from django.utils import timezone as datetime
 import time
 
 def index(request):
@@ -20,19 +20,28 @@ def index(request):
 
     visit = VisitModel()
     visit.ip = get_client_ip(request)
-    visit.date = time.strftime('%Y-%m-%d %H:%M:%S')
+    visit.date = datetime.now()
     visit.request_method = request.method
     visit.save()
 
     if request.method == 'POST':
+        
         form = LamentationForm(request.POST, prefix='lamentation')
 
-        print(request.POST.get('text'))
-
         if form.is_valid():
-            form.save(commit=True)
-            
-            return redirect("/lamentacoes")
+            if not PostRateModel.is_too_much(visit.ip, 'lament'):
+                form.save(commit=True)
+
+                post = PostRateModel()
+                post.ip = visit.ip
+                post.date = visit.date
+                post.type = 'lament'
+                post.save()
+
+                return redirect("/lamentacoes")
+            else:
+                return redirect("/?limit=1")
+
         else:
             print(form.errors)
 

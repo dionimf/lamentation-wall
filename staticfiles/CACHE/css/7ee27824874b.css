@@ -183,11 +183,11 @@ a {
 }
 
 .fixed {
-    position: fixed;
+    position: absolute;
     top: 0px;
     margin-left: auto;
-    left: 0px;
     
     margin-right: auto;
     text-align: center;
+    width: 100%;
 }
