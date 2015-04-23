@@ -20,6 +20,7 @@ class LamentationForm(forms.ModelForm):
 
         parsley_extras = {'text':
                           { 'minlength': '5',
+                            'maxlength': '300',
                             'error-message': 'Sua lamentação deve conter ao menos 5 caracteres.'}}
 
 @parsleyfy

@@ -127,7 +127,7 @@ a {
     /* height: 400px; */
     overflow: auto;
     width: 100%;
-    word-wrap: break-word;
+    max-width: 10px;
     margin-right: auto;
     margin-left: auto;
     padding-left: 0px;

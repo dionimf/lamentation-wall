@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractUser, User
 
 
 class LamentModel(models.Model):
-    text = models.TextField()
+    text = models.TextField(max_length=300)
     date = models.DateTimeField(default=None)
     cries_together = models.IntegerField(default=0)
 
@@ -29,7 +29,6 @@ class VisitModel(models.Model):
     ip = models.GenericIPAddressField()
     date = models.DateTimeField()
     request_method = models.CharField(max_length=10)
-
 
 class UserModel(AbstractUser):
     pass
