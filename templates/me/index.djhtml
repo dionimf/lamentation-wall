@@ -108,11 +108,13 @@
                         {% for lament in lamentations %}
                             <div class="lament" id="lament-{{ lament.id }}">
                                 <div>{{ lament.text|linebreaks }}</div>
-                                <div class="lamentation-date" style="position: relative;">
+                                <div class="lamentation-bottom" style="position: relative;">
 
-                                    {% localtime on %}
-                                    {{ lament.date }}
-                                    {% endlocaltime %}
+                                    <div class="lamentation-date">
+                                        {% localtime on %}
+                                        {{ lament.date|date:"d/m/Y H:i" }}
+                                        {% endlocaltime %}
+                                    </div>
 
                                     <div class="lament-buttons-right">
                                         <a onclick="cryTogether('{{ lament.id }}', 
