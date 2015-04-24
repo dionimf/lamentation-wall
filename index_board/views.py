@@ -11,7 +11,9 @@ from django.template.context import RequestContext
 
 import json
 from mylib.general import get_client_ip
-from django.utils import timezone as datetime
+from django.utils import timezone
+from datetime import datetime
+import pytz
 import time
 
 def index(request):
@@ -20,7 +22,7 @@ def index(request):
 
     visit = VisitModel()
     visit.ip = get_client_ip(request)
-    visit.date = datetime.now()
+    visit.date = timezone.now()
     visit.request_method = request.method
     visit.save()
 
@@ -29,8 +31,9 @@ def index(request):
         form = LamentationForm(request.POST, prefix='lamentation')
 
         if form.is_valid():
-            if not PostRateModel.is_too_much(visit.ip, 'lament'):
-                form.save(commit=True)
+            #if not PostRateModel.is_too_much(visit.ip, 'lament'):
+            if True:
+                lament = form.save(commit=True)
 
                 post = PostRateModel()
                 post.ip = visit.ip
@@ -74,7 +77,9 @@ def save_counsel(request):
         form = CounselForm(request.POST, prefix='counsel')
 
         if form.is_valid():
-            form.save(commit=True)
+            counsel = form.save(commit=False)
+            counsel.date = timezone.now()
+            counsel.save()
             id = request.POST.get('counsel-lament_id')
 
             # count how many counsels

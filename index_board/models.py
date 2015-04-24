@@ -12,11 +12,11 @@ from django.utils import timezone
 
 class LamentModel(models.Model):
     text = models.TextField(max_length=300)
-    date = models.DateTimeField(default=None)
+    date = models.DateTimeField()
     cries_together = models.IntegerField(default=0)
 
     def save(self):
-        self.date = time.strftime('%Y-%m-%d %H:%M:%S')
+        self.date = timezone.now()
         super(LamentModel, self).save()
 
     def count_counsels(self):

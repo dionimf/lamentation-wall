@@ -73,6 +73,14 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'lamentation_wall',
+#         'USER': 'postgres',
+#     }
+# }
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
