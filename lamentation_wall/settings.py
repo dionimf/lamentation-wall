@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'index_board',
     'social.apps.django_app.default',
     'compressor',
+    'easy_timezones',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,9 +53,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    'easy_timezones.middleware.EasyTimezoneMiddleware',
 
+)
 ROOT_URLCONF = 'lamentation_wall.urls'
+
+GEOIP_DATABASE = os.path.join(BASE_DIR, 'tz', 'GeoLiteCity.dat')
 
 WSGI_APPLICATION = 'lamentation_wall.wsgi.application'
 
@@ -65,7 +69,7 @@ WSGI_APPLICATION = 'lamentation_wall.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -80,10 +84,10 @@ USE_TZ = True
 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config(default='postgres://postgres@localhost/lamentation_wall')
+#DATABASES['default'] =  dj_database_url.config(default='postgres://postgres@localhost/lamentation_wall')
 
 # Enable Connection Pooling (if desired)
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+#DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
