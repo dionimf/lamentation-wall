@@ -35,6 +35,7 @@ function stopLoading() {
 function giveCounselModal(id) {
     $('#id_counsel-lament_id').val(id);
 
+    $('#navheader').css('width', $('#navheader').css('width'));
     loadCounsels();
 }
 
@@ -44,7 +45,7 @@ $('#counsel-modal').on('shown.bs.modal', function () {
 })
 
 $('#counsel-modal').on('hidden.bs.modal', function () {
-    //$('.navbar .container').css('margin-left', 'auto');
+    $('#navheader').css('width', 'auto');
 })
 
 function autoFocus(el, ignoreMobile) {
@@ -77,8 +78,6 @@ var navheaderWidth;
 $(document).ready(function() {
     autoFocus('#id_lamentation-text');
 
-    navheaderWidth = $('#navheader').css('width');
-    $('#navheader').css('width', navheaderWidth);
     $('#counsel-form').submit(function() {
         if($('#counsel-form').parsley().validate()) {
             $.ajax({

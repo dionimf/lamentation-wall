@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 {% load staticfiles %}
 {% load compress %}
+{% load tz %}
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Muro das lamentações</title>
@@ -107,9 +108,11 @@
                         {% for lament in lamentations %}
                             <div class="lament" id="lament-{{ lament.id }}">
                                 <div>{{ lament.text|linebreaks }}</div>
-
                                 <div class="lamentation-date" style="position: relative;">
-                                    &nbsp;
+
+                                    {% localtime on %}
+                                    {{ lament.date }}
+                                    {% endlocaltime %}
 
                                     <div class="lament-buttons-right">
                                         <a onclick="cryTogether('{{ lament.id }}', 
