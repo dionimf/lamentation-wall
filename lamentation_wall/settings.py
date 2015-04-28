@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'lamentation_wall.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-if os.getenv('DB_ENGINE') == 'sqlite3':
+if not os.getenv('DB_ENGINE') or os.getenv('DB_ENGINE') == 'sqlite3':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -74,9 +74,6 @@ if os.getenv('DB_ENGINE') == 'sqlite3':
         }
     }
 else:
-    # 'django.db.backends.mysql'
-    # 'lamentation_wall'
-    # 'postgres'
     DATABASES = {
         'default': {
             'ENGINE': os.getenv('DB_ENGINE'),
@@ -155,10 +152,10 @@ LOGIN_URL = '/'
 #SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/tetsltjauth'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '966874910637-107rk33ed1blob5p78heuhkpgm7m3hll.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'iIcFcY_ffhDjkYJmBjAfpfoo'
-SOCIAL_AUTH_FACEBOOK_KEY = '1104807732879346'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b5dadf3cbc892bb52c924a7404f46581'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('AUTH_FACEBOOK_SECRET')
 
 SOCIAL_AUTH_USER_MODEL = 'index_board.UserModel'
 AUTH_USER_MODEL = 'index_board.UserModel'

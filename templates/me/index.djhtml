@@ -26,15 +26,15 @@
                     <a href="/" id="logo" class="navbar-brand" >
                         <img src="{% static "img/muro-lamentacao-logo.png" %}" />
                     </a>
-                <button type="button" data-target="#navbar" data-toggle="collapse" class="navbar-toggle" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
+                    <button type="button" data-target="#navbar" data-toggle="collapse" class="navbar-toggle" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
 
-                    <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
 
-                    <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
 
-                    <span class="icon-bar"></span>
-                </button>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
 
                 <div id="navbar"  class="navbar-collapse collapse" >
@@ -76,7 +76,7 @@
             </div>
         </nav>
         
-        <div class="fill container">
+        <div class="fill container" id="container">
             <div id="loading-indicator" style="display: none;" >
                 <img src="{% static "img/ajax-loader.png" %}" />
             </div>
@@ -117,12 +117,25 @@
                                     </div>
 
                                     <div class="lament-buttons-right">
-                                        <a onclick="cryTogether('{{ lament.id }}', 
-                                                    'Chorando, aguarde...', 
-                                                    'Você chorou junto', 
-                                                    'Houve um problema. Seu choro não foi chorado.')">
-                                            Chorar junto ({{ lament.cries_together }})
-                                        </a>
+                                        {% if user.is_anonymous %}
+                                            <a role="button" data-placement="bottom" data-toggle="popover" data-content="É necessário estar logado para chorar junto.">
+                                        {% else %}
+                                                {% if lament.user_has_cried %}
+                                                    <a onclick="uncry('{{ lament.id }}', 
+                                                                'Deschorando, aguarde...', 
+                                                                'Você chorou junto', 
+                                                                'Houve um problema. Seu choro não foi deschorado.')">
+                                                        Deschorar ({{ lament.count_cries }})
+                                                    </a>
+                                                {% else %}
+                                                    <a onclick="cryTogether('{{ lament.id }}', 
+                                                                'Chorando, aguarde...', 
+                                                                'Você chorou junto', 
+                                                                'Houve um problema. Seu choro não foi chorado.')">
+                                                        Chorar junto ({{ lament.count_cries }})
+                                                    </a>
+                                                {% endif %}
+                                        {% endif %}
                                     </div>
 
                                     <div class="lament-buttons-left">

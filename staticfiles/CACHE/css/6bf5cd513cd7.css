@@ -6,9 +6,7 @@
 }
 
 .popover {
-    max-width: 100%;
-    width: 250px;
-    z-top: 9999999;
+    width: 50000px;
 }
 
 #counsel-modal p {

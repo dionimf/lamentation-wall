@@ -13,13 +13,34 @@ function cryTogether(id, waitMessage, okMessage, failMessage) {
 	    $('#lamentations').load(location.href + ' #lamentatios-reload',
 				                function() {
                                     //$('#lamentations').css('height', 'auto');
-				                    $(document).scrollTop(scroll);
+				                    //$(document).scrollTop(scroll);
                                     stopLoading();
 				                });
     }).fail(function(data) {
 	    alert(failMessage);
         stopLoading();
     });
+}
+
+function uncry(lamentId, waitMessage, okMessage, failMessage) {
+    startLoading();
+
+    $.ajax({
+	    url: "/uncry",
+	    data: { 'id': lamentId },
+	    context: document.body
+    }).done(function(data) {
+	    $('#lamentations').load(location.href + ' #lamentatios-reload',
+				                function() {
+                                    //$('#lamentations').css('height', 'auto');
+				                    //$(document).scrollTop(scroll);
+                                    stopLoading();
+				                });
+    }).fail(function(data) {
+	    alert(failMessage);
+        stopLoading();
+    });
+    
 }
 
 function startLoading(context) {
@@ -109,4 +130,26 @@ if($.browser.mobile && $.browser.mozilla) {
     $('#lament-header').removeClass('navbar-fixed-top');
     //$('body').removeClass('body');
 }
-$(document).height(10);
+
+$(function () {
+    //$('[data-toggle="popover"]').popover();
+
+    $('[data-toggle="popover"]').popover({
+        container: '#lamentations'
+    });
+});
+$('body').on('click', function (e) {
+    //only buttons
+    if ($(e.target).data('toggle') !== 'popover'
+        && $(e.target).parents('.popover.in').length === 0) { 
+        $('[data-toggle="popover"]').popover('hide');
+    }
+    //buttons and icons within buttons
+    /*
+    if ($(e.target).data('toggle') !== 'popover'
+        && $(e.target).parents('[data-toggle="popover"]').length === 0
+        && $(e.target).parents('.popover.in').length === 0) { 
+        $('[data-toggle="popover"]').popover('hide');
+    }
+    */
+});

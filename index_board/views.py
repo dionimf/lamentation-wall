@@ -49,6 +49,9 @@ def index(request):
             print(form.errors)
 
     lamentations = LamentModel.objects.order_by('-id')[:50]
+
+    for l in lamentations:
+        l.calculate_user_cry(request.user)
     
     return render(request, 'me/index.djhtml',
                   {'user': request.user,
@@ -60,16 +63,31 @@ def redirect_to_laments(request):
     return redirect("/lamentacoes")
 
 def cry_together(request):
+    if request.user.is_anonymous():
+        return HttpResponse(-1)
     try:
         lament = LamentModel.objects.get(id=request.GET.get('id'))
     except:
         lament = None
 
     if lament:
-        lament.cries_together += 1
-        lament.save()
+        count = lament.cry(request.user)
+        return HttpResponse(count)
 
-        return HttpResponse(lament.cries_together)
+def uncry(request):
+    if request.user.is_anonymous():
+        return HttpResponse(-1)
+
+    try:
+        lament = LamentModel.objects.get(id=request.GET.get('id'))
+    except:
+        lament = None
+
+    if lament:
+        print(2);
+        count = lament.uncry(request.user)
+        print(3);
+        return HttpResponse(count)
 
 def save_counsel(request):
     print('save_counsel')
@@ -105,7 +123,6 @@ def test(request):
     return render(request, 'me/test.djhtml')
 
 def google_login(request):
-
     context = RequestContext(request,
                              {'user': request.user})
     return render_to_response('me/google-login.djhtml',
