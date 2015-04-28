@@ -1,0 +1,1 @@
+web: gunicorn lamentation_wall.wsgi --log-file -

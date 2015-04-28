@@ -1,0 +1,85 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import redirect
+
+from index_board.forms import LamentationForm, CounselForm
+from index_board.models import *
+
+import json
+
+def index(request):
+
+    form = LamentationForm(prefix='lamentation')
+
+    if request.method == 'POST':
+        form = LamentationForm(request.POST, prefix='lamentation')
+
+        print(request.POST.get('text'))
+
+        if form.is_valid():
+            form.save(commit=True)
+            
+            return redirect("/lamentacoes")
+        else:
+            print(form.errors)
+
+    lamentations = LamentModel.objects.order_by('-id')[:50]
+    
+    return render(request, 'me/index.djhtml',
+                  {'form': form,
+                   'counsel_form': CounselForm(prefix='counsel'),
+                   'lamentations': lamentations})
+
+def redirect_to_laments(request):
+    return redirect("/lamentacoes")
+
+def cry_together(request):
+    try:
+        lament = LamentModel.objects.get(id=request.GET.get('id'))
+    except:
+        lament = None
+
+    if lament:
+        lament.cries_together += 1
+        lament.save()
+
+        return HttpResponse(lament.cries_together)
+
+def save_counsel(request):
+    print('save_counsel')
+    if request.method == 'POST':
+        print('post')
+        form = CounselForm(request.POST, prefix='counsel')
+
+        print(request.POST.get('counsel-lament_id'))
+        print(request.POST.get('counsel-text'))
+
+        if form.is_valid():
+            print('is valid')
+            form.save(commit=True)
+            id = request.POST.get('counsel-lament_id')
+            print('id: ' + request.POST.get('counsel-lament_id'))
+            print('count---:')
+            count = LamentModel.objects.get(id=request.POST.get('counsel-lament_id')).count_counsels()
+            print(str(count))
+
+            response_data = {'count': count, 'lament_id': id}
+            return HttpResponse(json.dumps(response_data))
+        else:
+            print('is NOT valid')
+
+
+    return HttpResponse(-1)
+
+def list_counsels(request):
+    if request.method == 'GET':
+        lament_id = request.GET.get('lament')
+
+        counsels = CounselModel.objects.filter(lament_id=lament_id)
+
+        return render(request, 'me/list-counsels.djhtml',
+                      { 'counsels': counsels })
+
+
+def test(request):
+    return render(request, 'me/test.djhtml')

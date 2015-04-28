@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+{% load compress %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Muro das lamentações</title>
+        <script src="{% static "js/jquery-2.1.0.min.js" %}" type="text/javascript"></script>
+        <script src="/static/js/jquery.browser.min.js" type="text/javascript"></script>
+        <script src="/static/js/parsley.min.js" type="text/javascript"></script>
+
+        <script src="{% static "bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css" />
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "me/style.less" %}" type="text/css" />
+        {% endcompress %}
+    </head>
+
+    <body class="body">
+        <nav class="navbar navbar-style navbar-default navbar-fixed-top">
+            <div class="container" >
+                <div class="navbar-header" ><a href="/" id="logo" class="navbar-brand" >
+                    <img src="{% static "img/muro-lamentacao-logo.png" %}" />
+                </a></div>
+                <div id="navbar"  class="navbar-collapse collapse" >
+                    <ul class="nav navbar-nav">
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right" role="menu">
+                        <li>
+                            <a>&nbsp;</a>
+                        </li>
+
+                        <li class="dropdown">
+                            {% if user.is_anonymous %}
+
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                Login<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu login-dropdown" role="menu">
+
+                                <li><a href="{% url 'social:begin' 'google-oauth2' %}">
+                                    <img src="{% static "img/auth/google.png" %}" />
+                                    Login com Google
+                                </a></li>
+                                <li><a href="{% url 'social:begin' 'facebook' %}">
+                                    <img src="{% static "img/auth/facebook.png" %}" />
+                                    Login com Facebook
+                                </a></li>
+                            </ul>
+                            {% else %}
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                {{ user.email }}<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu login-dropdown" role="menu">
+                                <li><a href="/logout">
+                                    Logout
+                                </a></li>
+                            </ul>
+                            {% endif %}
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <img src="{% static "img/ajax-loader.gif" %}" id="loading-indicator" style="display: none;" />
+
+            <form class="form lament-form" action="" method="post" id="lament-form" data-parsley-validate>
+                
+                <div>
+                    {% csrf_token %}
+
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+
+                    
+                    {% for field in form.visible_fields %}
+                        {{ field }}
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <input type="submit" name="submit" value="Lamentar" class="btn btn-primary" />
+                </div>
+
+            </form>
+
+            <div class="well lamentations" id="lamentations">
+                <div id="lamentatios-reload">
+                    {% if lamentations %}
+                        {% for lament in lamentations %}
+                            <div class="lament" id="lament-{{ lament.id }}">
+                                <div>{{ lament.text }}</div>
+
+                                <div class="lamentation-date" style="position: relative;">
+                                    &nbsp;
+
+                                    <div class="lament-buttons-right">
+                                        <a onclick="cryTogether('{{ lament.id }}', 
+                                                    'Chorando, aguarde...', 
+                                                    'Você chorou junto', 
+                                                    'Houve um problema. Seu choro não foi chorado.')">
+                                            Chorar junto ({{ lament.cries_together }})
+                                        </a>
+                                    </div>
+
+                                    <div class="lament-buttons-left">
+                                        <a onclick="giveCounselModal('{{ lament.id }}')">Dar conselho (<span id="counsels_count_{{ lament.id }}">{{ lament.count_counsels }}</span>)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+    <script src="{% static "me/generic.js" %}" type="text/javascript"></script>
+    <script src="{% static "me/script.js" %}" type="text/javascript"></script>
+
+</html>
