@@ -119,6 +119,8 @@
                                     <div class="lament-buttons-right">
                                         {% if user.is_anonymous %}
                                             <a role="button" data-placement="bottom" data-toggle="popover" data-content="É necessário estar logado para chorar junto.">
+                                                Chorar junto ({{ lament.count_cries }})
+                                            </a>
                                         {% else %}
                                                 {% if lament.user_has_cried %}
                                                     <a onclick="uncry('{{ lament.id }}', 

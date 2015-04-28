@@ -84,9 +84,7 @@ def uncry(request):
         lament = None
 
     if lament:
-        print(2);
         count = lament.uncry(request.user)
-        print(3);
         return HttpResponse(count)
 
 def save_counsel(request):

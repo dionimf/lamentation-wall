@@ -43,8 +43,11 @@ class LamentModel(models.Model):
         return LamentCriesModel.objects.filter(lament=self.id).count()
 
     def calculate_user_cry(self, user):
-        if LamentCriesModel.objects.filter(lament=self, user=user):
-            self.user_has_cried = True
+        if user.is_authenticated():
+            if LamentCriesModel.objects.filter(lament=self, user=user):
+                self.user_has_cried = True
+            else:
+                self.user_has_cried = False
         else:
             self.user_has_cried = False
 
