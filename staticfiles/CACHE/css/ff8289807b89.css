@@ -1,0 +1,175 @@
+#logo img {
+    height: 30px;
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+}
+
+#counsel-modal p {
+    text-align: center;
+}
+
+.login-dropdown img {
+    width: 30px;
+    height: 30px;
+}
+
+#logo {
+    float: left;
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.container > .navbar-header,
+.container-fluid > .navbar-header,
+.container > .navbar-collapse,
+.container-fluid > .navbar-collapse {
+  margin-left: 0px;
+}
+
+body {
+  padding-top: 60px;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    html, body {
+        height: 100%;
+        min-height: 100%;
+    }
+    .navbar-fixed-top,
+    .navbar-fixed-bottom,
+    .navbar-static-top {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+a {
+    cursor: pointer;
+}
+
+.lament-header textarea {
+    margin-left: auto; margin-right: auto;
+}
+
+.lament-header {
+    background: white;
+    border-bottom: solid 1px lightgray;
+    padding-top: 10px;
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    z-index: 1030;
+    top: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+@media (min-width: 700px) {
+  .container {
+    width: auto;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: auto;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.container hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #ccc -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
+}
+
+#header {
+    text-align: center;
+    color: grey;
+    margin-top: 1px;
+    /* border-bottom: gray solid; */
+}
+
+.lament-form {
+    margin-bottom: 10px;
+}
+
+.container {
+    text-align: center;
+}
+
+.lamentations {
+    /* background: lightgray; */
+    /* height: 400px; */
+    overflow: auto;
+    width: 100%;
+    word-wrap: break-word;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px;
+    border-radius: 15px;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.lament {
+    border-bottom: 1px gray dashed;
+    padding: 9px;
+    text-align: left;
+}
+
+.lamentation-date {
+    color: gray;
+    font-size: 0.92em;
+    text-align: center;
+}
+
+.lament-buttons-right {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.lament-buttons-left {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+#loading-indicator {
+    position: fixed;
+    background: red;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    z-index: 9000;
+}
