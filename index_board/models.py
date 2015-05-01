@@ -68,7 +68,14 @@ class LamentModel(models.Model):
 class CounselModel(models.Model):
     lament_id = models.ForeignKey('LamentModel')
     text = models.TextField()
+    date = models.DateTimeField()
     test = models.TextField()
+
+    def save(self):
+        if not self.id: # only if it's an insert
+            self.date = timezone.now()
+
+        super(CounselModel, self).save()
 
 class VisitModel(models.Model):
     ip = models.GenericIPAddressField()

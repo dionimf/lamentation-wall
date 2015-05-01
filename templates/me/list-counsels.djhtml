@@ -1,7 +1,20 @@
+{% load tz %}
 {% if counsels %}
-    <ul>
-        {% for counsel in counsels %}
-            <li>{{ counsel.text }}</li>
-        {% endfor %}
-    </ul>
+  {% for counsel in counsels %}
+    <div class="lament">
+      {{ counsel.text }}
+
+      <div class="lamentation-bottom" style="position: relative;">
+
+        <div class="lamentation-date">
+          {% localtime on %}
+          {{ counsel.date|date:"d/m/Y H:i" }}
+          {% endlocaltime %}
+        </div>
+
+      </div>
+    </div>
+  {% endfor %}
+  
+
 {% endif %}

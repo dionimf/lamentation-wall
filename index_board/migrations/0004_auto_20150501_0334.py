@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('index_board', '0001_initial'),
+        ('index_board', '0003_counselmodel_date'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='lamentmodel',
-            name='text',
-            field=models.TextField(max_length=300),
+            model_name='counselmodel',
+            name='date',
+            field=models.DateTimeField(),
         ),
     ]

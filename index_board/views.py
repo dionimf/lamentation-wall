@@ -113,6 +113,11 @@ def list_counsels(request):
 
         counsels = CounselModel.objects.filter(lament_id=lament_id)
 
+        print(lament_id)
+
+        print('counsels:')
+        print(counsels)
+
         return render(request, 'me/list-counsels.djhtml',
                       { 'counsels': counsels })
 
